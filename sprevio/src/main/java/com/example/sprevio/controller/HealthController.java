@@ -1,4 +1,4 @@
-package com.example.sprevio;
+package com.example.sprevio.controller;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
