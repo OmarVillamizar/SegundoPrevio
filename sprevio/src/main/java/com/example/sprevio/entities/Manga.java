@@ -1,12 +1,7 @@
 package com.example.sprevio.entities;
 
 import java.util.Date;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -15,19 +10,20 @@ public class Manga {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String nombre;
-    private Date fecha_lanzamiento;
+    private Date fechaLanzamiento;
     private int temporadas;
-    private String anime;
-    private String juego;
-    private String pelicula;
 
     @ManyToOne
     @JoinColumn(name = "pais_id")
     private Pais pais;
 
+    private int anime;
+    private int juego;
+    private int pelicula;
+
     @ManyToOne
     @JoinColumn(name = "tipo_id")
     private Tipo tipo;
 }
-
