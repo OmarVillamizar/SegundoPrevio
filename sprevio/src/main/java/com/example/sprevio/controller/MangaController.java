@@ -111,23 +111,4 @@ public class MangaController {
 
         return ResponseEntity.ok(mangaResponse);
     }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Object> eliminarManga(@PathVariable Integer id) {
-        Optional<Manga> mangaOpt = mangaRepository.findById(id);
-        if (mangaOpt.isEmpty()) {
-            return ResponseEntity.status(404).body("{\"error\":true,\"msg\":\"Objeto no encontrado\"}");
-        }
-
-        Manga manga = mangaOpt.get();
-        boolean tieneUsuariosAsociados = favoritoRepository.existsByManga(manga);
-        if (tieneUsuariosAsociados) {
-            return ResponseEntity.status(400).body("{\"error\":true,\"msg\":\"Manga tiene usuarios asociados\"}");
-        }
-
-        mangaRepository.delete(manga);
-        MangaResponse mangaResponse = new MangaResponse(manga.getId(), manga.getNombre(), manga.getFechaLanzamiento(), manga.getTemporadas(), manga.getPais().getNombre(), manga.getAnime(), manga.getJuego(), manga.getPelicula(), manga.getTipo().getNombre());
-
-        return ResponseEntity.ok(mangaResponse);
-    }
 }
